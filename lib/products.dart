@@ -5,20 +5,22 @@ class Products extends StatelessWidget {
 
   Products(this.products);
 
+  Widget _productItemBuilder(BuildContext context, int index) {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Image.asset('assets/firewatch.jpg'),
+          Text(products[index])
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: products.map((product) =>
-        Card(
-          child: Column(
-            children: <Widget>[
-              Image.network(
-                  'https://c.wallhere.com/images/fa/6a/d45cc39d45f258beb8bdc92fc6ad-1505361.png!s'),
-              Text('Food Paradise')
-            ],
-          ),
-        )
-      ).toList(),
+    return ListView.builder(
+      itemBuilder: _productItemBuilder,
+      itemCount: products.length,
     );
   }
 }
