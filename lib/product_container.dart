@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './products.dart';
 
 class ProductManager extends StatefulWidget {
-  final String _initString;
+  final Map<String, String> _initString;
 
   ProductManager(this._initString);
 
@@ -13,12 +13,18 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManagerState extends State<ProductManager> {
-  List<String> _products = [];
+  List<Map<String, String>> _products = [];
 
   @override
   void initState() {
     _products.add(widget._initString);
     super.initState();
+  }
+
+  void _deleteProduct(index) {
+    setState(() {
+      _products.removeAt(index);
+    });
   }
 
   @override
@@ -31,14 +37,14 @@ class _ProductManagerState extends State<ProductManager> {
             color: Theme.of(context).primaryColor,
             onPressed: () {
               setState(() {
-                _products.add('Food 2');              
+                _products.add({'title': 'Food 2', 'imageUrl': 'assets/firewatch.jpg'});              
               });
             },
             child: Text('Add'),
           ),
         ),
         Expanded(
-          child: Products(_products)
+          child: Products(_products, _deleteProduct)
         ) 
       ],
     );
