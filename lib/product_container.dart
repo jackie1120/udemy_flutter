@@ -1,32 +1,18 @@
 import 'package:flutter/material.dart';
 import './products.dart';
 
-class ProductManager extends StatefulWidget {
-  final Map<String, String> _initString;
-
-  ProductManager(this._initString);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _ProductManagerState();
-  }
-}
-
-class _ProductManagerState extends State<ProductManager> {
+class ProductContainer extends StatelessWidget {
   List<Map<String, String>> _products = [];
+  final Function _addProduct;
+  final Function _deleteProduct;
 
-  @override
-  void initState() {
-    _products.add(widget._initString);
-    super.initState();
-  }
+  ProductContainer(this._products, this._addProduct, this._deleteProduct);
 
-  void _deleteProduct(index) {
-    setState(() {
-      _products.removeAt(index);
-    });
-  }
-
+  // @override
+  // void initState() {
+  //   _products.add(widget._initString);
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,11 +21,7 @@ class _ProductManagerState extends State<ProductManager> {
           margin: EdgeInsets.all(10.0),
           child: RaisedButton(
             color: Theme.of(context).primaryColor,
-            onPressed: () {
-              setState(() {
-                _products.add({'title': 'Food 2', 'imageUrl': 'assets/firewatch.jpg'});              
-              });
-            },
+            onPressed: () => _addProduct({'title': 'Food 2', 'imageUrl': 'assets/firewatch.jpg'}),
             child: Text('Add'),
           ),
         ),
