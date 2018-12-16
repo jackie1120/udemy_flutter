@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyApp extends State {
-  final List<Map<String, String>> _products = [];
+  final List<Map<String, dynamic>> _products = [];
 
   void _deleteProduct(index) {
     setState(() {
@@ -24,7 +24,7 @@ class _MyApp extends State {
     });
   }
 
-  void _addProduct(Map<String, String> product) {
+  void _addProduct(Map<String, dynamic> product) {
     setState(() {
       _products.add(product);              
     });
@@ -34,11 +34,13 @@ class _MyApp extends State {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.lightBlueAccent
       ),
       // home: AuthPage(),
       routes: {
-        '/': (BuildContext context) => ProductManager(),
+        '/': (BuildContext context) => AuthPage(),
+        '/product_manager': (BuildContext context) => ProductManager(_addProduct),
         '/list': (BuildContext context) => HomePage(_products, _addProduct, _deleteProduct),
       },
       onGenerateRoute: ((RouteSettings settings) {
@@ -55,7 +57,7 @@ class _MyApp extends State {
         return null;
       }),
       onUnknownRoute: ((RouteSettings settings) {
-        return MaterialPageRoute(builder: (BuildContext context) => ProductManager());
+        return MaterialPageRoute(builder: (BuildContext context) => ProductManager(_addProduct));
       }),
     );
   }

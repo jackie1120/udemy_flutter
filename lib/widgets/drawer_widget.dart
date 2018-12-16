@@ -10,12 +10,14 @@ class DrawerWidget extends StatelessWidget {
         children: <Widget>[
           AppBar(title: Text('Choose'), automaticallyImplyLeading: false,),
           ListTile(
+            leading: Icon(Icons.shop),
             title: Text('Manager Product'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/'); 
+              Navigator.pushReplacementNamed(context, '/product_manager'); 
             },
           ),
           ListTile(
+            leading: Icon(Icons.list),
             title: Text('List Product'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/list'); 

@@ -4,6 +4,9 @@ import './product_create.dart';
 import './product_list.dart';
 
 class ProductManager extends StatelessWidget {
+  final Function addProduct;
+
+  ProductManager(this.addProduct);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class ProductManager extends StatelessWidget {
           ],),
         ),
         body: TabBarView(children: <Widget>[
-          ProductCreate(),
+          ProductCreate(addProduct),
           ProductList()
         ],),
       ),

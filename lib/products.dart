@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Products extends StatelessWidget {
-  final List<Map<String, String>> products;
+  final List<Map<String, dynamic>> products;
   final Function _deleteProduct;
 
   Products(this.products, this._deleteProduct);
@@ -11,23 +11,50 @@ class Products extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset(products[index]['imageUrl']),
-          Text(products[index]['title']),
+          SizedBox(height: 18.0,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+            Expanded(child: Text(
+              products[index]['title'], 
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40
+              ),
+              ),
+            ),
+            SizedBox(width: 10.0,),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 2.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(4.0)
+              ),
+              child: Text(
+                '\$${products[index]['price'].toString()}', 
+                style: TextStyle(
+                  color: Colors.white
+                ),
+              ),
+            )
+          ],),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 2.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4.0),
+              border: Border.all(
+                width: 1.0,
+                color: Colors.grey,
+              )
+            ),
+            child: Text('长沙县图书馆,湖南'),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlatButton(
-                child: Text('Detail'),
-                // onPressed: () {
-                //   Navigator.push<bool>(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (BuildContext context) => ProductPage(products[index]))
-                //   ).then((bool isDeleted) {
-                //     if(isDeleted) {
-                //       _deleteProduct(index);
-                //     }
-                //   });
-                // },
+              IconButton(
+                icon: Icon(Icons.info),
+                color: Theme.of(context).accentColor,
                 onPressed: () {
                   Navigator.pushNamed<bool>(
                     context, 
@@ -38,6 +65,11 @@ class Products extends StatelessWidget {
                     }
                   });
                 },
+              ),
+              IconButton(
+                icon: Icon(Icons.favorite_border),
+                color: Theme.of(context).primaryColor,
+                onPressed: () {},
               )
             ],
           )
