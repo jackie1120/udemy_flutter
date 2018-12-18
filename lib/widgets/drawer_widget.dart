@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../pages/product_manager.dart';
-import '../pages/home.dart';
 
 class DrawerWidget extends StatelessWidget {
   @override

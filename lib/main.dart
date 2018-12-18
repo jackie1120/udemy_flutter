@@ -30,6 +30,12 @@ class _MyApp extends State {
     });
   }
 
+  void _updateProduct(Map<String, dynamic> product, int index) {
+    setState(() {
+      _products[index] = product;              
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +46,7 @@ class _MyApp extends State {
       // home: AuthPage(),
       routes: {
         '/': (BuildContext context) => AuthPage(),
-        '/product_manager': (BuildContext context) => ProductManager(_addProduct),
+        '/product_manager': (BuildContext context) => ProductManager(_addProduct, _updateProduct, _products),
         '/list': (BuildContext context) => HomePage(_products, _addProduct, _deleteProduct),
       },
       onGenerateRoute: ((RouteSettings settings) {
@@ -57,7 +63,7 @@ class _MyApp extends State {
         return null;
       }),
       onUnknownRoute: ((RouteSettings settings) {
-        return MaterialPageRoute(builder: (BuildContext context) => ProductManager(_addProduct));
+        return MaterialPageRoute(builder: (BuildContext context) => ProductManager(_addProduct, _updateProduct, _products));
       }),
     );
   }

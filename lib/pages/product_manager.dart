@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../widgets/drawer_widget.dart';
-import './product_create.dart';
+import './product_edit.dart';
 import './product_list.dart';
 
 class ProductManager extends StatelessWidget {
   final Function addProduct;
+  final Function updateProduct;
+  final List<Map<String, dynamic>> products;
 
-  ProductManager(this.addProduct);
+  ProductManager(this.addProduct, this.updateProduct, this.products);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,8 @@ class ProductManager extends StatelessWidget {
           ],),
         ),
         body: TabBarView(children: <Widget>[
-          ProductCreate(addProduct),
-          ProductList()
+          ProductEdit(addProduct: addProduct),
+          ProductList(products, updateProduct)
         ],),
       ),
     );
