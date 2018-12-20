@@ -6,9 +6,10 @@ import './product_list.dart';
 class ProductManager extends StatelessWidget {
   final Function addProduct;
   final Function updateProduct;
+  final Function deleteProduct;
   final List<Map<String, dynamic>> products;
 
-  ProductManager(this.addProduct, this.updateProduct, this.products);
+  ProductManager(this.addProduct, this.updateProduct, this.deleteProduct, this.products);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ProductManager extends StatelessWidget {
         ),
         body: TabBarView(children: <Widget>[
           ProductEdit(addProduct: addProduct),
-          ProductList(products, updateProduct)
+          ProductList(products, updateProduct, deleteProduct)
         ],),
       ),
     );
