@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import './price_tag_widget.dart';
+import '../../model/product.dart';
 
 class ProductCardWidget extends StatelessWidget {
-  final Map<String, dynamic> _product;
+  final Product _product;
   final int _index;
   final Function _deleteProduct;
 
@@ -13,13 +14,13 @@ class ProductCardWidget extends StatelessWidget {
     return Card(
       child: Column(
         children: <Widget>[
-          Image.asset(_product['imageUrl']),
+          Image.asset(_product.imageUrl),
           SizedBox(height: 18.0,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
             Expanded(child: Text(
-              _product['title'], 
+              _product.title, 
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 40
@@ -27,7 +28,7 @@ class ProductCardWidget extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10.0,),
-            PriceTagWidget(_product['price'].toString()),
+            PriceTagWidget(_product.price.toString()),
           ],),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 2.0),
@@ -52,7 +53,7 @@ class ProductCardWidget extends StatelessWidget {
                     '/product/' + _index.toString()
                   ).then((bool isDeleted) {
                     if(isDeleted) {
-                      _deleteProduct(_index);
+                      // _deleteProduct(_index);
                     }
                   });
                 },
