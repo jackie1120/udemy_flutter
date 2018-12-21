@@ -4,7 +4,7 @@ import './pages/product_manager.dart';
 import './pages/home.dart';
 import './pages/product.dart';
 import 'package:scoped_model/scoped_model.dart';
-import './scoped_model/products.dart';
+import './scoped_model/main.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -20,8 +20,8 @@ class MyApp extends StatefulWidget {
 class _MyApp extends State {
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<ProductsModel>(
-      model: ProductsModel(),
+    return ScopedModel<MainModel>(
+      model: MainModel(),
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.deepOrange,

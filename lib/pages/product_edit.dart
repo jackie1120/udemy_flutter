@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/product.dart';
 import 'package:scoped_model/scoped_model.dart';
-import '../scoped_model/products.dart';
+import '../scoped_model/main.dart';
 
 class ProductEdit extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _ProductEditState extends State<ProductEdit> {
     'price': null
   };
 
-  void _submitForm(ProductsModel model) {
+  void _submitForm(MainModel model) {
     if(!_formKey.currentState.validate()) {
       return;
     }
@@ -50,7 +50,7 @@ class _ProductEditState extends State<ProductEdit> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<ProductsModel>(builder: (BuildContext context, Widget child, ProductsModel model) {
+    return ScopedModelDescendant<MainModel>(builder: (BuildContext context, Widget child, MainModel model) {
       int selectProductIndex = model.selectProductIndex;
       Product product = selectProductIndex == null ? null : model.products[selectProductIndex];
       Widget content = GestureDetector(

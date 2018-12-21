@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../widgets/products/price_tag_widget.dart';
 import '../model/product.dart';
 import 'package:scoped_model/scoped_model.dart';
-import '../scoped_model/products.dart';
+import '../scoped_model/main.dart';
 
 class ProductPage extends StatelessWidget {
   final int productIndex;
 
   ProductPage(this.productIndex);
 
-  _showConfirmDialog(BuildContext context, ProductsModel model) {
+  _showConfirmDialog(BuildContext context, MainModel model) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -46,7 +46,7 @@ class ProductPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Detail'),
         ),
-        body: ScopedModelDescendant<ProductsModel>(builder: (BuildContext context, Widget child, ProductsModel model) {
+        body: ScopedModelDescendant<MainModel>(builder: (BuildContext context, Widget child, MainModel model) {
           Product product = model.products[productIndex];
           
           return Column(

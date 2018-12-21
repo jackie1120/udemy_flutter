@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './widgets/products/products.dart';
-import './model/product.dart';
 
 class ProductContainer extends StatelessWidget {
   // @override
