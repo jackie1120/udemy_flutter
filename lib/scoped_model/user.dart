@@ -1,7 +1,13 @@
-import 'package:scoped_model/scoped_model.dart';
 import '../model/user.dart';
-import './main.dart';
+import './connected_products.dart';
 
-mixin UserModel {
-  User authenticateUser;
+mixin UserModel on ConnectedProducts {
+
+  void login(String email, String password) {
+    authenticatedUser = User(
+      id: 'sdfasd',
+      email: email,
+      password: password
+    );
+  }
 }

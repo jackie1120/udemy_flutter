@@ -7,9 +7,8 @@ import '../../scoped_model/main.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product _product;
   final int _index;
-  final Function _deleteProduct;
 
-  ProductCardWidget(this._product, this._index, this._deleteProduct);
+  ProductCardWidget(this._product, this._index);
   
   @override
   Widget build(BuildContext context) {
@@ -43,6 +42,7 @@ class ProductCardWidget extends StatelessWidget {
             ),
             child: Text('长沙县图书馆,湖南'),
           ),
+          Text(_product.userEmail),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
