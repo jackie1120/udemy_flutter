@@ -30,20 +30,19 @@ class _ProductEditState extends State<ProductEdit> {
     }
     _formKey.currentState.save();
     if(model.selectProductIndex == null) {
-      model.addProduct(Product(
-        title: tempProduct['title'],
-        description: tempProduct['description'],
-        imageUrl: tempProduct['imageUrl'],
-        price: tempProduct['price'],
-      ));
+      model.addProduct(
+        tempProduct['title'],
+        tempProduct['description'],
+        tempProduct['imageUrl'],
+        tempProduct['price'],
+      );
     } else {
       model.updateProduct(
-        Product(
-          title: tempProduct['title'],
-          description: tempProduct['description'],
-          imageUrl: tempProduct['imageUrl'],
-          price: tempProduct['price'],
-        ));
+        tempProduct['title'],
+        tempProduct['description'],
+        tempProduct['imageUrl'],
+        tempProduct['price'],
+      );
     }
     Navigator.pushReplacementNamed(context, '/list');
   }

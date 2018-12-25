@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import '../scoped_model/main.dart';
 
 class AuthPage extends StatefulWidget {
   @override
@@ -80,19 +82,22 @@ class _AuthPageState extends State<AuthPage> {
                       },
                       title: Text('Keep login',style: TextStyle(color: Colors.white),),
                     ),
-                    RaisedButton(
-                      color: Theme.of(context).primaryColor,
-                      onPressed: () {
-                        if(!_formkey.currentState.validate()) {
-                          return;
-                        }
-                        _formkey.currentState.save();
-                        print(password);
-                        print(email);
-                        Navigator.pushReplacementNamed(context, '/product_manager');
-                      },
-                      child: Text('Login'),
-                    )
+                    ScopedModelDescendant<MainModel>(builder: (BuildContext context, Widget child, MainModel model) {
+                      return RaisedButton(
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          if(!_formkey.currentState.validate()) {
+                            return;
+                          }
+                          _formkey.currentState.save();
+                          print(password);
+                          print(email);
+                          model.login(email, password);
+                          Navigator.pushReplacementNamed(context, '/product_manager');
+                        },
+                        child: Text('Login'),
+                      );
+                    },),
                   ]
                 ),
               ),
